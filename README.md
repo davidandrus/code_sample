@@ -1,7 +1,7 @@
 code_sample
 ===========
 
-Install Yeoman - (http://yeoman.io/index.html)[http://yeoman.io/index.html]
+Install Yeoman - http://yeoman.io/index.html
 
 npm install
 bower install
