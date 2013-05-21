@@ -1,0 +1,26 @@
+<ul class="people">
+  <li ng-repeat="user in users" data-user-id="{{user.id}}">
+    <div class="person">
+      <div class="person-name">{{user.name}}</div>
+      <div class="person-title">{{user.occupation}}</div>
+      <div class="person-avatar">
+        <img ng-show="user.avatar" ng-src="{{user.avatar}}" />
+        <div ng-show="!user.avatar" ng-class="getRandomClass()">{{user.name.substring(0,1)}}</div>
+      </div>
+      <div class="person-stats">
+        <div class="person-stats-chart">
+          <div class="person-stats-chart-chart">
+            <canvas></canvas>
+          </div>
+          <div class="person-stats-chart-range"><span class="conversions">CON</span> / <span class="impressions">IMP</span> for {{range.date_min | date: 'MM/dd' }} - {{range.date_max | date: 'MM/dd'}}</div>
+        </div>
+        <ul class="person-stats-list">
+          <li class="impressions">{{user.logs.impressions.length}} <span class="label">Impressions</span></li>
+          <li class="conversions">{{user.logs.conversions.length}} <span class="label">Conversions</span></li>
+          <li class="revenue">${{user.logs.revenue.toFixed(2)}}</li>
+        </ul>
+      </div>
+    </div>
+  </li>
+</ul>
+

@@ -1,0 +1,205 @@
+/////////////
+// Imports //
+/////////////
+
+@import 'compass/reset';
+@import 'compass/css3';
+
+///////////////
+// Variables //
+///////////////
+
+// colors
+$gray: #7f8c8d;
+$light-gray: #95a5a6;
+$black: black;
+$blue:#2980b9;
+$dark-blue: #2c3e50;
+$orange:#e67e22;
+$white: white;
+$green: #27ae60;
+$purple: #9b59b6;
+
+//breakpoints
+$two-col-breakpoint: 768px;
+$three-col-breakpoint: 1200px;
+
+////////////
+// Mixins //
+////////////
+
+@mixin mq-2-col {
+  @media screen and (min-width: $two-col-breakpoint){
+    @content;
+  }
+} // mq-2-col
+
+@mixin mq-3-col {
+  @media screen and (min-width: $three-col-breakpoint){
+    @content;
+  }
+} // mq-3-col
+
+////////////
+//Styling //
+////////////
+
+* {
+  @include box-sizing(border-box);
+}
+
+body {
+  background: $gray;
+  font-family: helvetica, arial, sans-serif;
+  padding: 15px;
+}
+
+.impressions {
+  color: $orange;
+}
+
+.conversions {
+  color: $blue;
+} 
+
+.people {
+  overflow: hidden;
+
+  > li {
+    padding: 15px;
+  } // > li
+
+  @include mq-2-col() {
+    overflow: hidden;
+
+    > li {
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+    }
+  }
+
+  @include  mq-3-col() {
+    > li {
+      width: 33.3%;
+
+      // prevent rounding errors
+      &:nth-child(2) {
+        width: 33.4%;
+      }
+    }
+  }
+} // .people 
+
+.person {
+  @include border-radius(10px);
+  background-color: white;
+  border: 6px solid $black;
+  padding: 12px;
+  overflow: hidden;
+  position: relative;
+} // .person
+
+  .person-name {
+    color: $dark-blue;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0 5px 90px;
+  }
+
+  .person-title {
+    color: $light-gray;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 0 10px 100px;
+  }
+
+  .person-avatar {
+    height: 80px;
+    overflow: hidden;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 80px;
+
+    img,
+    div {
+      @include border-radius(9999px);
+      height: 80px;
+      width: 80px;
+    }
+
+    div {
+      font-size: 40px;
+      height: 80px;
+      line-height: 80px;
+      text-align: center;
+      width: 80px;
+    }
+  }
+
+.person-stats {
+  float: right;
+  overflow: hidden;
+  width: 100%;
+}
+
+  
+  .person-stats-chart {
+    float: left;  
+    width: 65%;
+  }
+
+    .person-stats-chart-chart {
+      height: 80px;
+      margin: 20px 0 5px;
+      width: 100%;
+
+      canvas  {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .person-stats-chart-range {
+      color: $light-gray;
+      font-size: 14px;
+      text-align: center;
+    }
+
+  .person-stats-list {
+    float:right;
+    padding-left: 10px;
+    text-align: right;
+    width: 35%;
+
+    .label {
+      color: $light-gray;
+      display:block;
+      font-size: 13px;
+      font-weight: 200;
+      margin-top: -2px;
+      text-transform: lowercase;
+    }
+
+    .revenue {
+      color: $green;
+      font-size: 20px;
+      margin-top:10px;
+    }
+
+    > li {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+  }
+
+  // colors from https://kuler.adobe.com/#themeID/2461669
+  $colors: #5a6961 #91a89c #c8e8d7 #d3f5e3 #b2cfc0;
+
+  @for $i from 1 to (length($colors)+1) {
+    .bg-#{$i} {
+      background-color: nth($colors, $i);
+    }
+  }
